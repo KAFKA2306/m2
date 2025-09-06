@@ -18,10 +18,12 @@ jobs:
         run: |
           pip install pandas yfinance pyyaml matplotlib requests
       - name: Run update script
+        env:
+          MPLBACKEND: Agg
         run: python update_data.py
       - name: Upload plot artifact
         uses: actions/upload-artifact@v4
-        if: exists('m2_area.png')
+        if: ${{ hashFiles('m2_area.png') != '' }}
         with:
           name: m2-area-plot
           path: m2_area.png
