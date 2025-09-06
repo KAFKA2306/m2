@@ -1,0 +1,76 @@
+name: Economic Dashboard Auto-Deploy
+
+on:
+  schedule:
+    # Run daily at 9 AM UTC (after markets open)
+    - cron: '0 9 * * *'
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    # Allow manual triggering
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  update-data-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install pandas numpy matplotlib seaborn requests yfinance pyyaml scipy
+        
+    - name: Update economic data
+      run: |
+        python update_data.py
+        echo "Data update completed at $(date)" >> update.log
+        
+    - name: Generate all visualizations
+      run: |
+        python visualize_data.py
+        python economic_structure_viz.py  
+        python economic_ultrathink_dashboard.py
+        echo "Visualizations generated at $(date)" >> update.log
+        
+    - name: Create dashboard website
+      run: |
+        python generate_dashboard_site.py
+        
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: './dashboard'
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+      
+    - name: Commit updated data (if changed)
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data.yml *.png update.log || true
+        git diff --staged --quiet || git commit -m "🤖 Auto-update economic data and visualizations $(date -I)" || true
+        git push || true
