@@ -100,20 +100,22 @@ yahoo_tickers:
 # Economic Variable Classifications
 variable_types:
   stock_variables:
-    - "M2SL"
-    - "WALCL" 
-    - "RRPONTSYD"
-    - "PCEPILFE"
-    - "DXY"
-    - "NDX"
-    - "BTCUSD"
-    - "GOLD"
+    variables:
+      - "M2SL"
+      - "WALCL" 
+      - "RRPONTSYD"
+      - "PCEPILFE"
+      - "DXY"
+      - "NDX"
+      - "BTCUSD"
+      - "GOLD"
     description: "Cumulative levels - use area charts"
     
   flow_variables:
-    - "TNX"
-    - "BAMLH0A0HYM2"
-    - "VIX"
+    variables:
+      - "TNX"
+      - "BAMLH0A0HYM2"
+      - "VIX"
     description: "Rates and intensities - use line charts"
 
 # Economic Regime Definitions

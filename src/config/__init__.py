@@ -29,12 +29,12 @@ class Config:
     @property
     def stock_variables(self) -> list:
         """Get list of stock (cumulative) variables."""
-        return self._config['variable_types']['stock_variables']
+        return self._config['variable_types']['stock_variables']['variables']
     
     @property
     def flow_variables(self) -> list:
         """Get list of flow (rate/intensity) variables."""
-        return self._config['variable_types']['flow_variables']
+        return self._config['variable_types']['flow_variables']['variables']
     
     @property
     def economic_regimes(self) -> Dict[str, Any]:
