@@ -1,0 +1,194 @@
+# Economic Indicators Configuration
+# Centralized configuration for all data sources and visualization settings
+
+fred_series:
+  M2SL:
+    name: "M2 Money Supply"
+    category: "monetary_policy"
+    unit: "billions"
+    display_scale: 1000  # Convert to trillions
+    visualization_type: "area"
+    color: "#2E86AB"
+    
+  WALCL:
+    name: "Fed Balance Sheet"
+    category: "monetary_policy" 
+    unit: "millions"
+    display_scale: 1000000  # Convert to trillions
+    visualization_type: "area"
+    color: "#A23B72"
+    
+  RRPONTSYD:
+    name: "Reverse Repo Operations"
+    category: "monetary_policy"
+    unit: "billions"
+    display_scale: 1000  # Convert to trillions, scale for visibility
+    visualization_type: "area"
+    color: "#F18F01"
+    
+  PCEPILFE:
+    name: "Core PCE Price Index"
+    category: "inflation"
+    unit: "index"
+    display_scale: 1
+    visualization_type: "line"
+    color: "#8E44AD"
+    
+  BAMLH0A0HYM2:
+    name: "High Yield Credit Spread"
+    category: "credit_risk"
+    unit: "percentage"
+    display_scale: 1
+    visualization_type: "line"
+    color: "#E74C3C"
+
+yahoo_tickers:
+  DXY:
+    symbols: ["DX-Y.NYB", "DX=F"]
+    name: "US Dollar Index"
+    category: "currency"
+    unit: "index"
+    display_scale: 1
+    visualization_type: "line"
+    color: "#2E8B57"
+    
+  TNX:
+    symbols: ["^TNX"]
+    name: "10-Year Treasury Yield"
+    category: "interest_rates"
+    unit: "percentage"
+    display_scale: 0.1  # Yahoo returns percentage * 10
+    visualization_type: "line"
+    color: "#DC143C"
+    
+  VIX:
+    symbols: ["^VIX"]
+    name: "Volatility Index"
+    category: "volatility"
+    unit: "index"
+    display_scale: 1
+    visualization_type: "line"
+    color: "#696969"
+    
+  NDX:
+    symbols: ["^NDX"]
+    name: "NASDAQ 100"
+    category: "equity"
+    unit: "index"
+    display_scale: 1
+    visualization_type: "line"
+    color: "#1E90FF"
+    
+  BTCUSD:
+    symbols: ["BTC-USD"]
+    name: "Bitcoin"
+    category: "digital_asset"
+    unit: "dollars"
+    display_scale: 1
+    visualization_type: "line"
+    color: "#F7931A"
+    
+  GOLD:
+    symbols: ["XAUUSD=X", "GC=F"]
+    name: "Gold"
+    category: "commodity"
+    unit: "dollars_per_ounce"
+    display_scale: 1
+    visualization_type: "line"
+    color: "#FFD700"
+
+# Economic Variable Classifications
+variable_types:
+  stock_variables:
+    - "M2SL"
+    - "WALCL" 
+    - "RRPONTSYD"
+    - "PCEPILFE"
+    - "DXY"
+    - "NDX"
+    - "BTCUSD"
+    - "GOLD"
+    description: "Cumulative levels - use area charts"
+    
+  flow_variables:
+    - "TNX"
+    - "BAMLH0A0HYM2"
+    - "VIX"
+    description: "Rates and intensities - use line charts"
+
+# Economic Regime Definitions
+economic_regimes:
+  covid_qe:
+    start: "2020-03-01"
+    end: "2021-06-30"
+    name: "COVID/QE Era"
+    color: "#FF6B6B"
+    description: "Massive Stimulus"
+    characteristics:
+      - "Unprecedented monetary expansion"
+      - "Zero interest rate policy"
+      - "Asset price inflation"
+      
+  reopening_boom:
+    start: "2021-07-01"
+    end: "2022-02-28"
+    name: "Reopening Boom"
+    color: "#4ECDC4"
+    description: "Growth & Inflation"
+    characteristics:
+      - "Economic reopening"
+      - "Supply chain disruptions"
+      - "Inflation emergence"
+      
+  inflation_fight:
+    start: "2022-03-01"
+    end: "2023-12-31"
+    name: "Inflation Fight"
+    color: "#45B7D1"
+    description: "Aggressive Tightening"
+    characteristics:
+      - "Rapid rate increases"
+      - "Balance sheet reduction"
+      - "Asset repricing"
+      
+  new_equilibrium:
+    start: "2024-01-01"
+    end: "2025-12-31"
+    name: "New Equilibrium"
+    color: "#96CEB4"
+    description: "Normalization"
+    characteristics:
+      - "Policy normalization"
+      - "Digital asset maturation"
+      - "Structural shifts"
+
+# Visualization Settings
+visualization:
+  style: "seaborn-v0_8-whitegrid"
+  figure_dpi: 300
+  colors:
+    background: "#FFFFFF"
+    grid: "#E5E5E5"
+    text: "#2C3E50"
+    
+  dashboard:
+    master_size: [24, 18]
+    section_size: [20, 12]
+    correlation_size: [12, 10]
+    
+# Data Settings  
+data:
+  history_days: 1825  # 5 years
+  cache_file: "data.yml"
+  update_frequency: "daily"
+  fallback_strategy: "use_last_known"
+  
+# API Settings
+apis:
+  fred:
+    base_url: "https://fred.stlouisfed.org/graph/fredgraph.csv"
+    timeout: 20
+    
+  yahoo:
+    timeout: 10
+    fallback_url: "https://query1.finance.yahoo.com/v7/finance/quote"

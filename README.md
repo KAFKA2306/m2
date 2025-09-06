@@ -1,173 +1,120 @@
-# 🧠 Economic Ultrathink Dashboard
+# 🧠 経済超分析ダッシュボード
 
-[![Dashboard Deploy](https://github.com/KAFKA2306/m2/actions/workflows/dashboard-deploy.yml/badge.svg)](https://github.com/KAFKA2306/m2/actions/workflows/dashboard-deploy.yml)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Dashboard-blue?logo=github)](https://kafka2306.github.io/m2/)
+[![Open Dashboard](https://img.shields.io/badge/Open%20Dashboard-Visit%20Site-2ea44f?logo=github)](https://kafka2306.github.io/m2/)
 [![update-data](https://github.com/KAFKA2306/m2/actions/workflows/update.yml/badge.svg)](https://github.com/KAFKA2306/m2/actions/workflows/update.yml)
 [![pages-visualizations](https://github.com/KAFKA2306/m2/actions/workflows/pages.yml/badge.svg)](https://github.com/KAFKA2306/m2/actions/workflows/pages.yml)
+[![dashboard-deploy](https://github.com/KAFKA2306/m2/actions/workflows/dashboard-deploy.yml/badge.svg)](https://github.com/KAFKA2306/m2/actions/workflows/dashboard-deploy.yml)
 
-**Automated economic analysis dashboard tracking monetary policy, asset markets, and regime transitions from 2020-2025.**
+**2020年から2025年までの金融政策、資産市場、および経済体制の移行を追跡する自動経済分析ダッシュボード**
 
-## 🎯 Dashboard Features
+## 🎯 ダッシュボードの機能
 
-### 📊 **Live Dashboard**: [kafka2306.github.io/m2](https://kafka2306.github.io/m2)
+### 📊 **ライブダッシュボード**: [kafka2306.github.io/m2](https://kafka2306.github.io/m2)
+（上の「Open Dashboard」ボタンからもアクセスできます）
 
-- **Real-time data updates** via GitHub Actions (daily at 9 AM UTC)
-- **11 key economic indicators** from FRED and Yahoo Finance
-- **5 years of historical data** (2020-2025) with 1,825+ data points
-- **Stock vs Flow analysis** with appropriate visualization paradigms
-- **Economic regime detection** and transition analysis
-- **Responsive design** optimized for desktop and mobile
+- GitHub Actionsによる**リアルタイムデータ更新**（UTC時間で毎日9時）
+- FREDとYahoo Financeから取得した**11の主要経済指標**
+- **過去5年間（2020-2025年）**にわたる1,825件以上のデータポイント
+- **ストック（蓄積）とフロー（変動）の分析**に対応した適切な可視化手法
+- **経済体制の検出**と移行分析機能
+- **レスポンシブデザイン**を採用し、デスクトップ・モバイル両端末に最適化
 
-### 🏛️ Key Analysis Areas
+### 🏛️ 主要分析対象領域
 
-1. **Monetary Policy Architecture**
-   - M2 Money Supply (stacked area visualization)
-   - Federal Reserve Balance Sheet (WALCL)
-   - Reverse Repo Operations (RRPONTSYD)
-   - Interest rate environment (10Y Treasury)
+1. **金融政策体系**
+   - M2マネーサプライ（積み上げエリアチャート表示）
+   - 連邦準備制度のバランスシート（WALCL）
+   - リバースレポオペレーション（RRPONTSYD）
+   - 金利環境（10年物米国債利回り）
 
-2. **Asset Universe Performance**
-   - Bitcoin (₿) - Digital store of value
-   - Gold (🥇) - Traditional safe haven  
-   - NASDAQ 100 (💻) - Innovation economy
-   - US Dollar Index (💵) - Global reserve currency
+2. **資産ユニバースのパフォーマンス**
+   - ビットコイン（₿） - デジタル価値保存手段
+   - 金（🥇） - 伝統的安全資産
+   - NASDAQ 100指数（💻） - イノベーション経済
+   - USドル指数（💵） - 世界基軸通貨
 
-3. **Risk & Flow Variables**
-   - VIX Volatility Index (Fear gauge)
-   - High Yield Credit Spreads (Credit risk)
-   - Core PCE Price Index (Inflation)
+3. **リスク要因とフロー変数**
+   - VIXボラティリティ指数（恐怖指数）
+   - ハイイールドクレジットスプレッド（信用リスク指標）
+   - コアPCE物価指数（インフレ指標）
 
-## 🚀 Automation Pipeline
+## 🚀 自動化パイプライン
 
-### GitHub Actions Workflow
-- **Trigger**: Daily at 9 AM UTC + manual dispatch
-- **Data Sources**: FRED API, Yahoo Finance API
-- **Processing**: Python analytics pipeline
-- **Deployment**: GitHub Pages (zero-maintenance)
-- **Monitoring**: Automatic commit of updated data/visualizations
+### GitHub Actionsワークフロー
+- **トリガー**: UTC時間で毎日9時、および手動実行可能
+- **データソース**: FRED APIおよびYahoo Finance API
+- **処理工程**: Pythonによる分析パイプライン
+- **デプロイ**: GitHub Pagesでの公開（メンテナンス不要）
+- **モニタリング**: 更新データ/可視化結果の自動コミット機能
 
-### Data Flow
+### データフロー
 ```
-FRED API + Yahoo Finance → Python Scripts → Data Processing → 
-Visualization Generation → HTML Dashboard → GitHub Pages Deployment
+FRED API + Yahoo Finance → Pythonスクリプト → データ処理 → 
+可視化データ生成 → HTMLダッシュボード → GitHub Pages公開
 ```
 
-## 📈 Economic Insights Generated
+## 📈 生成された経済インサイト
 
-### 🎭 Regime Analysis (2020-2025)
-1. **COVID/QE Era** (2020-2021): Massive stimulus, Bitcoin +246%
-2. **Reopening Boom** (2021-2022): Growth acceleration
-3. **Inflation Fight** (2022-2023): Aggressive tightening  
-4. **New Equilibrium** (2024-2025): Policy normalization
+### 🎭 経済体制分析（2020-2025年）
+1. **COVID/QE時代**（2020-2021年）：大規模な景気刺激策実施、ビットコイン+246%上昇
+2. **経済再開ブーム**（2021-2022年）：成長加速局面
+3. **インフレ抑制戦**（2022-2023年）：積極的な金融引き締め政策
+4. **新たな均衡状態**（2024-2025年）：政策の正常化過程
 
-### 🔗 Structural Correlations Discovered
-- **Inflation ↔ Bond Yields**: 0.946 (Fisher Effect)
-- **NASDAQ ↔ Bitcoin**: 0.919 (Risk-on convergence)
-- **Fed Assets ↔ Repo Rate**: 0.896 (Policy coordination)
-- **Dollar ↔ Gold**: 0.171 (Safe haven competition)
+### 🔗 発見された構造的相関関係
+- **インフレ ↔ 債券利回り**：0.946（フィッシャー効果）
+- **NASDAQ ↔ ビットコイン**：0.919（リスクオン局面における連動性）
+- **FRB資産 ↔ レポ金利**：0.896（政策協調関係）
+- **ドル ↔ 金**：0.171（安全資産としての競合関係）
 
-### ⚡ Stock vs Flow Paradigm
-- **Stock Variables** (Area charts): M2, Fed assets, price levels - cumulative nature
-- **Flow Variables** (Line charts): Interest rates, volatility, spreads - intensity measures
+### ⚡ ストック対フローの分析枠組み
+- **ストック変数**（エリアチャート表示）：M2、FRB資産、物価水準 - 累積的な性質
+- **フロー変数**（ラインチャート表示）：金利、ボラティリティ、スプレッド - 強度指標
 
-## 🛠️ Technical Implementation
+## 🛠️ 技術的実装
 
-### Core Scripts
-- `update_data.py` - Data fetching and historical backfill
-- `visualize_data.py` - Comprehensive time series analysis  
-- `economic_structure_viz.py` - Stock/flow paradigm visualization
-- `economic_ultrathink_dashboard.py` - Master dashboard generation
-- `generate_dashboard_site.py` - HTML website creation
+### 主要スクリプト
+- `update_data.py` - データ取得と過去データの補完処理
+- `visualize_data.py` - 包括的な時系列データ分析
+- `economic_structure_viz.py` - ストック/フロー分析枠組みの可視化
+- `economic_ultrathink_dashboard.py` - マスターダッシュボード生成
+- `generate_dashboard_site.py` - HTMLウェブサイト作成
 
-### Dependencies
+### 依存ライブラリ
 ```python
 pandas, numpy, matplotlib, seaborn, requests, yfinance, pyyaml, scipy
 ```
 
-### Data Sources
+### データソース
 - **FRED**: M2SL, WALCL, RRPONTSYD, PCEPILFE, BAMLH0A0HYM2
 - **Yahoo Finance**: DXY, TNX, VIX, NDX, BTC-USD, Gold
 
-## 📊 Generated Visualizations
+## 📊 生成された可視化データ
 
-1. `economic_ultrathink_dashboard.png` - Master economic analysis
-2. `monetary_policy_architecture.png` - Fed policy tools (stacked areas)
-3. `asset_cumulative_analysis.png` - Wealth accumulation patterns
-4. `economic_regime_analysis.png` - Regime transitions
-5. `stock_flow_framework.png` - Variable classification
-6. `economic_correlation_matrix.png` - Structural relationships
-7. `economic_indicators_overview.png` - Complete time series
-8. `volatility_analysis.png` - Risk pattern analysis
+1. `economic_ultrathink_dashboard.png` - 総合経済分析
+2. `monetary_policy_architecture.png` - FRB政策ツールの可視化（積み上げエリアチャート）
+3. `asset_cumulative_analysis.png` - 資産蓄積パターン分析
+4. `economic_regime_analysis.png` - 経済体制の移行分析
+5. `stock_flow_framework.png` - 変数分類フレームワーク
+6. `economic_correlation_matrix.png` - 構造的相関関係マトリックス
+7. `economic_indicators_overview.png` - 全時系列データの概要
+8. `volatility_analysis.png` - リスクパターン分析
 
-## 🚀 Getting Started
+## 🚀 導入手順
 
-### Local Development
+### ローカル開発環境
 ```bash
-# Clone repository
+# リポジトリのクローン
 git clone https://github.com/KAFKA2306/m2.git
 cd m2
 
-# Install dependencies
+# 依存ライブラリのインストール
 pip install pandas numpy matplotlib seaborn requests yfinance pyyaml scipy
 
-# Update data and generate visualizations
+# データ更新と可視化データ生成
 python update_data.py
 python economic_ultrathink_dashboard.py
 
-# Generate dashboard website
+# ダッシュボードウェブサイトの生成
 python generate_dashboard_site.py
 ```
-
-### GitHub Pages Setup
-1. Enable GitHub Pages in repository settings
-2. Set source to "GitHub Actions"
-3. Workflow will auto-deploy to `https://yourusername.github.io/m2`
-
-## 🎯 Economic Philosophy
-
-This dashboard embodies the **"ultrathink"** approach to economic analysis:
-
-- **Visual encoding matches economic structure** (areas for stocks, lines for flows)
-- **Regime-aware analysis** recognizing structural breaks
-- **Multi-asset perspective** across traditional and digital store of value
-- **Correlation-based insights** revealing economic relationships
-- **Automated intelligence** removing manual update burden
-
-## 🤖 Automation Benefits
-
-- **Zero maintenance** after initial setup
-- **Always current** with latest economic data
-- **Consistent methodology** across time periods
-- **Version controlled** analysis and visualizations
-- **Publicly accessible** economic intelligence
-
----
-
-## 📜 Previous Version (Japanese)
-
-GitHub Actionsを用いて指標データを自動取得・保存するように再設計しました。`update_data.py`がFREDとYahooから値を取得し、結果は`data.yml`に保存されます。取得に失敗した場合は既存の`data.yml`を参照して補完します。履歴を再構築したい場合は`--backfill`で5年分を一括取得できます。
-
-`data.yml`には5年分の履歴が保持され、キャッシュ兼フォールバックとして機能します。また、M2SLの面グラフを`m2_area.png`に生成しますが、バイナリのためリポジトリには含まれません。
-
-### 使い方（CLI）
-
-- 依存関係の導入（ローカル実行する場合）：
-  `pip install pandas yfinance pyyaml matplotlib requests`
-
-- 最新スナップショットを1行追記：
-  `python3 update_data.py`
-
-- 直近5年の履歴を再構築（バックフィル）：
-  `python3 update_data.py --backfill`
-
-- 出力：`data.yml`（日次の配列）と`m2_area.png`（M2SLの面グラフ）。
-
-### 自動実行（GitHub Actions）
-
-- `.github/workflows/update.yml` が毎日 00:00 UTC（cron: `0 0 * * *`）で実行し、依存を導入→`python update_data.py`→`data.yml`に差分があればコミットします。
-
----
-
-**Built with Python • Powered by Economic Data • Deployed with GitHub Actions**
-
-*"Making economic analysis as automated as software deployment"* 🚀
