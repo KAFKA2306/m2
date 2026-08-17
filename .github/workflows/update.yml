@@ -20,7 +20,7 @@ jobs:
       - name: Run update script
         env:
           MPLBACKEND: Agg
-        run: python update_data.py
+        run: python refactored_update_data.py
       - name: Upload plot artifact
         uses: actions/upload-artifact@v4
         if: ${{ hashFiles('m2_area.png') != '' }}
