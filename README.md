@@ -1,23 +1,23 @@
 # 🧠 経済超分析ダッシュボード
 
 [![Open Dashboard](https://img.shields.io/badge/Open%20Dashboard-Visit%20Site-2ea44f?logo=github)](https://kafka2306.github.io/m2/)
-[![update-data](https://github.com/KAFKA2306/m2/actions/workflows/update.yml/badge.svg)](https://github.com/KAFKA2306/m2/actions/workflows/update.yml)
 [![pages-visualizations](https://github.com/KAFKA2306/m2/actions/workflows/pages.yml/badge.svg)](https://github.com/KAFKA2306/m2/actions/workflows/pages.yml)
-[![dashboard-deploy](https://github.com/KAFKA2306/m2/actions/workflows/dashboard-deploy.yml/badge.svg)](https://github.com/KAFKA2306/m2/actions/workflows/dashboard-deploy.yml)
 
-**2020年から2025年までの金融政策、資産市場、および経済体制の移行を追跡する自動経済分析ダッシュボード**
+**2020年から2025年までの金融政策、資産市場、および経済体制の移行を追跡する経済分析ダッシュボード**
 
 ## 🎯 ダッシュボードの機能
 
-### 📊 **ライブダッシュボード**: [kafka2306.github.io/m2](https://kafka2306.github.io/m2)
+### 📊 **公開ダッシュボード**: [kafka2306.github.io/m2](https://kafka2306.github.io/m2)
 （上の「Open Dashboard」ボタンからもアクセスできます）
 
-- GitHub Actionsによる**リアルタイムデータ更新**（UTC時間で毎日9時）
-- FREDとYahoo Financeから取得した**11の主要経済指標**
+- activeなGitHub Actions `pages-visualizations` が、committed `data.yml` から可視化を再生成してGitHub Pagesへ公開
+- FREDとYahoo Financeから取得した**11の主要経済指標**を保存済みデータとして利用
 - **過去5年間（2020-2025年）**にわたる1,825件以上のデータポイント
 - **ストック（蓄積）とフロー（変動）の分析**に対応した適切な可視化手法
 - **経済体制の検出**と移行分析機能
 - **レスポンシブデザイン**を採用し、デスクトップ・モバイル両端末に最適化
+
+> **更新状態:** データ取得用の`update-data`と旧`dashboard-deploy` workflowは現在`disabled_inactivity`です。Pagesの再生成・公開workflowはactiveですが、READMEだけから外部データが最新まで自動取得されているとは判断しないでください。
 
 ### 🏛️ 主要分析対象領域
 
@@ -41,15 +41,15 @@
 ## 🚀 自動化パイプライン
 
 ### GitHub Actionsワークフロー
-- **トリガー**: UTC時間で毎日9時、および手動実行可能
-- **データソース**: FRED APIおよびYahoo Finance API
-- **処理工程**: Pythonによる分析パイプライン
-- **デプロイ**: GitHub Pagesでの公開（メンテナンス不要）
-- **モニタリング**: 更新データ/可視化結果の自動コミット機能
+- **active**: `pages-visualizations` — UTC 00:15のschedule、対象ファイルpush、手動実行で、既存`data.yml`から可視化と静的サイトを生成してGitHub Pagesへ公開
+- **disabled_inactivity**: `update-data`、旧`dashboard-deploy`
+- **データソース**: 保存済みデータの元取得系としてFRED APIおよびYahoo Finance APIを使用
+- **処理工程**: Pythonによる可視化・分析パイプライン
+- **デプロイ**: GitHub Pages
 
 ### データフロー
 ```
-FRED API + Yahoo Finance → Pythonスクリプト → データ処理 → 
+保存済み data.yml → Python可視化処理 →
 可視化データ生成 → HTMLダッシュボード → GitHub Pages公開
 ```
 
