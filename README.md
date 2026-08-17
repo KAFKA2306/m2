@@ -1,120 +1,57 @@
-# 🧠 経済超分析ダッシュボード
+# 経済指標ダッシュボード
 
 [![Open Dashboard](https://img.shields.io/badge/Open%20Dashboard-Visit%20Site-2ea44f?logo=github)](https://kafka2306.github.io/m2/)
 [![pages-visualizations](https://github.com/KAFKA2306/m2/actions/workflows/pages.yml/badge.svg)](https://github.com/KAFKA2306/m2/actions/workflows/pages.yml)
 
-**2020年から2025年までの金融政策、資産市場、および経済体制の移行を追跡する経済分析ダッシュボード**
+経済・市場データを `data.yml` に保存し、Pythonで可視化してGitHub Pagesへ公開するrepositoryです。
 
-## 🎯 ダッシュボードの機能
+- Repository: https://github.com/KAFKA2306/m2
+- Dashboard: https://kafka2306.github.io/m2/
 
-### 📊 **公開ダッシュボード**: [kafka2306.github.io/m2](https://kafka2306.github.io/m2)
-（上の「Open Dashboard」ボタンからもアクセスできます）
+## Data flow
 
-- activeなGitHub Actions `pages-visualizations` が、committed `data.yml` から可視化を再生成してGitHub Pagesへ公開
-- FREDとYahoo Financeから取得した**11の主要経済指標**を保存済みデータとして利用
-- **過去5年間（2020-2025年）**にわたる1,825件以上のデータポイント
-- **ストック（蓄積）とフロー（変動）の分析**に対応した適切な可視化手法
-- **経済体制の検出**と移行分析機能
-- **レスポンシブデザイン**を採用し、デスクトップ・モバイル両端末に最適化
-
-> **更新状態:** データ取得用の`update-data`と旧`dashboard-deploy` workflowは現在`disabled_inactivity`です。Pagesの再生成・公開workflowはactiveですが、READMEだけから外部データが最新まで自動取得されているとは判断しないでください。
-
-### 🏛️ 主要分析対象領域
-
-1. **金融政策体系**
-   - M2マネーサプライ（積み上げエリアチャート表示）
-   - 連邦準備制度のバランスシート（WALCL）
-   - リバースレポオペレーション（RRPONTSYD）
-   - 金利環境（10年物米国債利回り）
-
-2. **資産ユニバースのパフォーマンス**
-   - ビットコイン（₿） - デジタル価値保存手段
-   - 金（🥇） - 伝統的安全資産
-   - NASDAQ 100指数（💻） - イノベーション経済
-   - USドル指数（💵） - 世界基軸通貨
-
-3. **リスク要因とフロー変数**
-   - VIXボラティリティ指数（恐怖指数）
-   - ハイイールドクレジットスプレッド（信用リスク指標）
-   - コアPCE物価指数（インフレ指標）
-
-## 🚀 自動化パイプライン
-
-### GitHub Actionsワークフロー
-- **active**: `pages-visualizations` — UTC 00:15のschedule、対象ファイルpush、手動実行で、既存`data.yml`から可視化と静的サイトを生成してGitHub Pagesへ公開
-- **disabled_inactivity**: `update-data`、旧`dashboard-deploy`
-- **データソース**: 保存済みデータの元取得系としてFRED APIおよびYahoo Finance APIを使用
-- **処理工程**: Pythonによる可視化・分析パイプライン
-- **デプロイ**: GitHub Pages
-
-### データフロー
-```
-保存済み data.yml → Python可視化処理 →
-可視化データ生成 → HTMLダッシュボード → GitHub Pages公開
+```text
+データ取得
+  → data.yml
+  → 可視化
+  → 静的HTML/PNG
+  → GitHub Pages
 ```
 
-## 📈 生成された経済インサイト
+現在のデータ更新entry pointは `refactored_update_data.py` です。`update_data.py` の互換wrapperは使用しません。
 
-### 🎭 経済体制分析（2020-2025年）
-1. **COVID/QE時代**（2020-2021年）：大規模な景気刺激策実施、ビットコイン+246%上昇
-2. **経済再開ブーム**（2021-2022年）：成長加速局面
-3. **インフレ抑制戦**（2022-2023年）：積極的な金融引き締め政策
-4. **新たな均衡状態**（2024-2025年）：政策の正常化過程
+主なscripts:
 
-### 🔗 発見された構造的相関関係
-- **インフレ ↔ 債券利回り**：0.946（フィッシャー効果）
-- **NASDAQ ↔ ビットコイン**：0.919（リスクオン局面における連動性）
-- **FRB資産 ↔ レポ金利**：0.896（政策協調関係）
-- **ドル ↔ 金**：0.171（安全資産としての競合関係）
+- `refactored_update_data.py` — データ更新
+- `visualize_data.py` — 基本可視化
+- `economic_structure_viz.py` — 追加可視化
+- `economic_ultrathink_dashboard.py` — ダッシュボード用可視化
+- `generate_dashboard_site.py` — `dashboard/` の静的サイト生成
 
-### ⚡ ストック対フローの分析枠組み
-- **ストック変数**（エリアチャート表示）：M2、FRB資産、物価水準 - 累積的な性質
-- **フロー変数**（ラインチャート表示）：金利、ボラティリティ、スプレッド - 強度指標
+## Data sources
 
-## 🛠️ 技術的実装
+保存済みデータの取得処理ではFREDとYahoo Financeを使用します。`data.yml` が外部sourceの最新値と一致するとはREADMEだけから判断せず、分析時には対象期間と取得状態を確認してください。
 
-### 主要スクリプト
-- `update_data.py` - データ取得と過去データの補完処理
-- `visualize_data.py` - 包括的な時系列データ分析
-- `economic_structure_viz.py` - ストック/フロー分析枠組みの可視化
-- `economic_ultrathink_dashboard.py` - マスターダッシュボード生成
-- `generate_dashboard_site.py` - HTMLウェブサイト作成
+FRED seriesとして、M2、Federal Reserve assets、reverse repo、core PCE、high-yield spreadなどを扱います。市場系列としてドル、米国債利回り、VIX、NASDAQ 100、Bitcoin、goldを扱います。実際のsymbol/series IDは現在のcode/configを参照してください。
 
-### 依存ライブラリ
-```python
-pandas, numpy, matplotlib, seaborn, requests, yfinance, pyyaml, scipy
-```
+## Local use
 
-### データソース
-- **FRED**: M2SL, WALCL, RRPONTSYD, PCEPILFE, BAMLH0A0HYM2
-- **Yahoo Finance**: DXY, TNX, VIX, NDX, BTC-USD, Gold
-
-## 📊 生成された可視化データ
-
-1. `economic_ultrathink_dashboard.png` - 総合経済分析
-2. `monetary_policy_architecture.png` - FRB政策ツールの可視化（積み上げエリアチャート）
-3. `asset_cumulative_analysis.png` - 資産蓄積パターン分析
-4. `economic_regime_analysis.png` - 経済体制の移行分析
-5. `stock_flow_framework.png` - 変数分類フレームワーク
-6. `economic_correlation_matrix.png` - 構造的相関関係マトリックス
-7. `economic_indicators_overview.png` - 全時系列データの概要
-8. `volatility_analysis.png` - リスクパターン分析
-
-## 🚀 導入手順
-
-### ローカル開発環境
 ```bash
-# リポジトリのクローン
 git clone https://github.com/KAFKA2306/m2.git
 cd m2
-
-# 依存ライブラリのインストール
 pip install pandas numpy matplotlib seaborn requests yfinance pyyaml scipy
-
-# データ更新と可視化データ生成
-python update_data.py
+python refactored_update_data.py
+python visualize_data.py
 python economic_ultrathink_dashboard.py
-
-# ダッシュボードウェブサイトの生成
 python generate_dashboard_site.py
 ```
+
+Tests:
+
+```bash
+pytest -q
+```
+
+## Automation
+
+`.github/workflows/` がdata update、visualization、GitHub Pages publicationの実行定義です。scheduleや有効状態はGitHub Actions上のcurrent workflow stateを確認してください。
