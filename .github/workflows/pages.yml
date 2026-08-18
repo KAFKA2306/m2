@@ -55,7 +55,7 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           mkdir -p public
-          cp -v *.png public/ || true
+          cp -v *.png public/
           DATA_URL="https://raw.githubusercontent.com/$GITHUB_REPOSITORY/main/data.yml"
           DATA_AS_OF="$(python - <<'PY'
           import yaml
