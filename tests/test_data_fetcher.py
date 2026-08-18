@@ -1,9 +1,13 @@
 """Tests for data fetching module."""
 
 from datetime import date, datetime
+from pathlib import Path
+import sys
 from unittest.mock import Mock, patch
 
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from src.config import config
 from src.data.fetcher import DataFetcher
