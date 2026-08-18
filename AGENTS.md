@@ -1,9 +1,9 @@
 # Repository Guidelines
 
 ## Project Structure
-- `src/`: Python code for data retrieval, analysis, visualization, helpers, and indicator configuration.
+- `src/`: Python code for data retrieval, analysis, helpers, and indicator configuration.
 - `tests/`: pytest tests.
-- Root scripts: `refactored_update_data.py`, `visualize_data.py`, `economic_structure_viz.py`, `economic_ultrathink_dashboard.py`.
+- Root scripts: `refactored_update_data.py` and `visualize_data.py`.
 - `data.yml`: saved data used by the visualizations.
 - `.github/workflows/update.yml`: saved-data update.
 - `.github/workflows/pages.yml`: tests, visualization build, and GitHub Pages publication.
@@ -32,4 +32,4 @@
 - When changing paths or entry points, update all corresponding GitHub Actions references.
 
 ## Data flow
-Data retrieval → `data.yml` → visualization → GitHub Pages.
+Data retrieval → `data.yml` → `visualize_data.py` → GitHub Pages.
