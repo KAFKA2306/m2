@@ -46,10 +46,7 @@ jobs:
       - name: Run tests
         run: pytest -q
       - name: Generate visualizations
-        run: |
-          python visualize_data.py
-          python economic_ultrathink_dashboard.py
-          python economic_structure_viz.py
+        run: python visualize_data.py
       - name: Build static site
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
@@ -89,26 +86,14 @@ jobs:
                 'correlation_analysis.png',
                 'economic_relationships.png',
                 'performance_dashboard.png',
-                'volatility_analysis.png',
-                'm2_area.png',
-                'asset_cumulative_analysis.png',
-                'economic_regime_analysis.png',
-                'economic_ultrathink_dashboard.png',
-                'economic_structure_viz.png',
-                'stock_flow_framework.png'
+                'volatility_analysis.png'
               ];
               const titles = {
                 'economic_indicators_overview.png': 'Economic Indicators Overview',
                 'correlation_analysis.png': 'Correlation Analysis',
                 'economic_relationships.png': 'Economic Relationships',
                 'performance_dashboard.png': 'Performance Dashboard',
-                'volatility_analysis.png': 'Volatility Analysis',
-                'm2_area.png': 'M2 Money Supply (Area)',
-                'asset_cumulative_analysis.png': 'Asset Cumulative Analysis',
-                'economic_regime_analysis.png': 'Economic Regime Analysis',
-                'economic_ultrathink_dashboard.png': 'Economic Dashboard',
-                'economic_structure_viz.png': 'Economic Structure Visualization',
-                'stock_flow_framework.png': 'Stock-Flow Framework'
+                'volatility_analysis.png': 'Volatility Analysis'
               };
               const grid = document.querySelector('.grid');
               files.forEach(f => {
