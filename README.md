@@ -11,14 +11,14 @@
 ## Data flow
 
 ```text
-データ取得
+refactored_update_data.py
   → data.yml
-  → 可視化
-  → 静的HTML/PNG
+  → visualization scripts
+  → pages.yml
   → GitHub Pages
 ```
 
-現在のデータ更新entry pointは `refactored_update_data.py` です。`update_data.py` の互換wrapperは使用しません。
+データ更新は `.github/workflows/update.yml`、公開は `.github/workflows/pages.yml` が担当します。
 
 主なscripts:
 
@@ -26,32 +26,26 @@
 - `visualize_data.py` — 基本可視化
 - `economic_structure_viz.py` — 追加可視化
 - `economic_ultrathink_dashboard.py` — ダッシュボード用可視化
-- `generate_dashboard_site.py` — `dashboard/` の静的サイト生成
 
 ## Data sources
 
-保存済みデータの取得処理ではFREDとYahoo Financeを使用します。`data.yml` が外部sourceの最新値と一致するとはREADMEだけから判断せず、分析時には対象期間と取得状態を確認してください。
+保存済みデータの取得処理ではFREDとYahoo Financeを使用します。`data.yml` が外部sourceの最新値と一致するとはREADMEだけから判断せず、公開ページに表示される最新保存timestampと取得状態を確認してください。
 
-FRED seriesとして、M2、Federal Reserve assets、reverse repo、core PCE、high-yield spreadなどを扱います。市場系列としてドル、米国債利回り、VIX、NASDAQ 100、Bitcoin、goldを扱います。実際のsymbol/series IDは現在のcode/configを参照してください。
+FRED seriesとしてM2、Federal Reserve assets、reverse repo、core PCE、high-yield spreadなどを扱います。市場系列としてドル、米国債利回り、VIX、NASDAQ 100、Bitcoin、goldを扱います。実際のsymbol/series IDは現在のcode/configを参照してください。
 
 ## Local use
 
 ```bash
 git clone https://github.com/KAFKA2306/m2.git
 cd m2
-pip install pandas numpy matplotlib seaborn requests yfinance pyyaml scipy
+python -m pip install -r requirements.txt
+pytest -q
 python refactored_update_data.py
 python visualize_data.py
 python economic_ultrathink_dashboard.py
-python generate_dashboard_site.py
-```
-
-Tests:
-
-```bash
-pytest -q
+python economic_structure_viz.py
 ```
 
 ## Automation
 
-`.github/workflows/` がdata update、visualization、GitHub Pages publicationの実行定義です。scheduleや有効状態はGitHub Actions上のcurrent workflow stateを確認してください。
+`update.yml` が保存データを更新し、`pages.yml` がtests・visualization build・GitHub Pages publicationを行います。scheduleや実行結果はGitHub Actions上のcurrent workflow stateを確認してください。
