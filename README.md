@@ -13,7 +13,7 @@
 ```text
 refactored_update_data.py
   → data.yml
-  → visualization scripts
+  → visualize_data.py
   → pages.yml
   → GitHub Pages
 ```
@@ -23,9 +23,7 @@ refactored_update_data.py
 主なscripts:
 
 - `refactored_update_data.py` — データ更新
-- `visualize_data.py` — 基本可視化
-- `economic_structure_viz.py` — 追加可視化
-- `economic_ultrathink_dashboard.py` — ダッシュボード用可視化
+- `visualize_data.py` — 保存済みデータから可視化を生成
 
 ## Data sources
 
@@ -42,8 +40,6 @@ python -m pip install -r requirements.txt
 pytest -q
 python refactored_update_data.py
 python visualize_data.py
-python economic_ultrathink_dashboard.py
-python economic_structure_viz.py
 ```
 
 ## Automation
